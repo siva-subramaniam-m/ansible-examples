@@ -15,6 +15,7 @@
     name: mysql
     state: started
     enabled: yes
+  become: yes
 - name: creating mysql user
   mysql_user:
     name: "{{ lookup('cypher','secret=secret/db_user') }}"
@@ -36,3 +37,4 @@
   service:
     name: mysql
     state: restarted
+  become: yes
