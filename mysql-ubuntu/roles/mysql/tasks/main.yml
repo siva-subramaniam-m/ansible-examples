@@ -6,12 +6,12 @@
        name: "{{item}}"
        state: present
        update_cache: yes
-     loop:
+      loop:
        - mysql-server
        - mysql-client 
        - python3-mysqldb
        - libmysqlclient-dev
-     become: yes
+      become: yes
     - name: start and enable mysql service
       service:
         name: mysql
