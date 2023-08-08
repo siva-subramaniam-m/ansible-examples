@@ -7,7 +7,7 @@
 
 - name: Configure MongoDB to listen on all IP addresses
   lineinfile:
-    dest: /etc/mongod.conf
+    dest: /etc/mongodb.conf
     regexp: '^bindIp'
     line: 'bindIp = 0.0.0.0'
 
