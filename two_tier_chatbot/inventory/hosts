@@ -1,0 +1,11 @@
+[all]
+frontend
+backend
+
+[frontend]
+frontend ansible_host=10.180.20.223 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+[backend]
+backend ansible_host=10.180.20.223 ansible_user=root ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+

@@ -1,0 +1,6 @@
+---
+- name: Deploy Chatbot Application backend
+  hosts: all
+  become: yes
+  roles:
+    - backend

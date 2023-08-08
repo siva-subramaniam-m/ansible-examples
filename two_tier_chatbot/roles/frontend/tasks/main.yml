@@ -1,0 +1,30 @@
+---
+
+- name: Install the nodejs
+  apt:
+    name: nodejs
+    state: present
+
+- name: Install n
+  command: npm install -g n
+
+- name: Install specific version of npm
+  command: n install 14
+
+- name: Copy chatbot code to frontend server
+  copy:
+    src: ./chatbot_nodejs/
+    dest: /var/www/chatbot
+    mode: 0755
+
+- name: Install dependencies and start the Node.js application
+  command: npm install
+  args:
+    chdir: /var/www/chatbot
+
+- name: Start the Node.js application
+  command: node index
+  args:
+    chdir: /var/www/chatbot
+  async: 1000
+  poll: 0

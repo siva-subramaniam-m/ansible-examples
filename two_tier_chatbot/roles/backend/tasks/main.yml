@@ -1,0 +1,29 @@
+---
+- name: Install MongoDB
+  apt:
+    name: mongodb
+    update_cache: yes
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Start MongoDB service
+  service:
+    name: mongodb
+    state: started
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Set MongoDB connection string as environment variable
+  lineinfile:
+    dest: /etc/environment
+    line: 'MONGODB_URL={{ mongodb_connection_string }}'
+    state: present
+  tags: backend
+
+- name: copy user creation script
+  template:
+    src: mongodb_users.js.j2
+    dest: /tmp/mongodb_users
+
+- name: Create MongoDB user with provided username and password
+  command: mongo {{ mongodb_database }} /tmp/mongodb_users
+  ignore_errors: yes  # Ignore errors if the user already exists
+  tags: backend
