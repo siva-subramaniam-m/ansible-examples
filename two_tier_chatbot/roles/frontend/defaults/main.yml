@@ -1,2 +1,8 @@
 ---
+mongodb_user: chatbotadmin
+mongodb_password: password
+mongodb_host: {{ ansible_env.UBUNTU_IP }}
+mongodb_port: 27017
+mongodb_database: chatbotdb
+MONGODB_URL: ""mongodb://{{ mongodb_user }}:{{ mongodb_password }}@{{ mongodb_host }}:{{ mongodb_port }}/{{ mongodb_database }}""
 NODEJS_VERSION: "14"
