@@ -29,6 +29,8 @@
 
 - name: Start the Node.js application
   command: node index
+  environment:
+    MONGODB_URL: "{{ mongodb_connection_string }}
   args:
     chdir: /var/www/chatbot
   async: 1000
