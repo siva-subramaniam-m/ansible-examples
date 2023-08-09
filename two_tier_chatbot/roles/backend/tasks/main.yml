@@ -11,6 +11,12 @@
     regexp: '^bind_ip'
     line: 'bind_ip = 0.0.0.0'
 
+- name: Configure MongoDB to listen to 27017 port
+  lineinfile:
+    dest: /etc/mongodb.conf
+    regexp: '^#port'
+    line: 'port = 27017'
+
 - name: Start MongoDB service
   service:
     name: mongodb
