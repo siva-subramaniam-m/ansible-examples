@@ -10,11 +10,14 @@
     name: npm
     state: present
 
-- name: Install n pm2 packages
-  command: npm install -g n pm2
+- name: Install n
+  command: npm install -g n
 
 - name: Install specific version of npm
   command: n install 14
+
+- name: Install pm2 package
+  command: npm install -g pm2
 
 - name: Copy chatbot code to frontend server
   copy:
