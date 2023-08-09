@@ -27,6 +27,12 @@
   args:
     chdir: /var/www/chatbot
 
+- name: Stop the app if already running
+  command: pm2 stop index.js
+  args:
+    chdir: /var/www/chatbot
+  ignore_errors: true
+
 - name: Start the Node.js application
   command: pm2 start index.js
   environment:
