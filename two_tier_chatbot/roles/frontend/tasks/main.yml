@@ -10,8 +10,8 @@
     name: npm
     state: present
 
-- name: Install n
-  command: npm install -g n
+- name: Install n pm2 packages
+  command: npm install -g n pm2
 
 - name: Install specific version of npm
   command: n install 14
@@ -28,10 +28,17 @@
     chdir: /var/www/chatbot
 
 - name: Start the Node.js application
-  command: node index
+  command: pm2 start index.js
   environment:
     MONGODB_URL: "{{ mongodb_connection_string }}"
   args:
     chdir: /var/www/chatbot
-  async: 1000
-  poll: 0
+
+#- name: Start the Node.js application
+#  command: node index
+#  environment:
+#    MONGODB_URL: "{{ mongodb_connection_string }}"
+#  args:
+#    chdir: /var/www/chatbot
+#  async: 1000
+#  poll: 0

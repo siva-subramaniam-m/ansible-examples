@@ -1,4 +1,4 @@
-const express = require('express');
+[200~const express = require('express');
 const http = require('http');
 const mongoose = require('mongoose');
 const socketio = require('socket.io');
@@ -8,13 +8,25 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-const mongoDBUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/chatbotdb';
+const mongoDBUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 
-mongoose.connect(mongoDBUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+const schema = new mongoose.Schema({
+  name: String
 });
 
+async function run() {
+  // Create a separate connection and register a model on it...
+  const conn = mongoose.createConnection();
+  conn.model('User', schema);
+
+  // But call `mongoose.connect()`, which connects MongoDB's default
+  // connection to MongoDB. `conn` is still disconnected.
+  await mongoose.connect(mongoDBUrl);
+
+  await conn.model('User').findOne(); // Error: buffering timed out ...
+}
+
+run();
 const messageSchema = new mongoose.Schema({
   content: String,
   sender: String,
