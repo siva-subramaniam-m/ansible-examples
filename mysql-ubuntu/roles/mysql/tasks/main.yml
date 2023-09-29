@@ -17,7 +17,7 @@
     enabled: yes
   become: yes
 - name: creating mysql user
-  mysql_user:
+  community.mysql.mysql_user:
     name: "{{ lookup('cypher','secret=secret/db_user') }}"
     password: "{{ lookup('cypher','secret=secret/db_password') }}"
     priv: '*.*:ALL'
