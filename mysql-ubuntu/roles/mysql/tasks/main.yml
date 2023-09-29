@@ -18,8 +18,8 @@
   become: yes
 - name: creating mysql user
   community.mysql.mysql_user:
-    name: "{{ lookup('cypher','secret=secret/db_user') }}"
-    password: "{{ lookup('cypher','secret=secret/db_password') }}"
+    name: "{{ lookup('cypher','secret=secret/v107a_db_user') }}"
+    password: "{{ lookup('cypher','secret=secret/v107a_db_password') }}"
     priv: '*.*:ALL'
     host: '%'
     state: present
