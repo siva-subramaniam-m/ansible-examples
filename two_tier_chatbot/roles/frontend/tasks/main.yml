@@ -1,5 +1,9 @@
 ---
 
+- name: Print out env var
+  debug:
+    var: ansible_env
+    
 - name: Install the nodejs
   apt:
     name: nodejs
