@@ -9,42 +9,51 @@
     msg: "'{{ lookup('ansible.builtin.env', 'UBUNTU_IP') }}' is the UBUNTU_IP environment variable."
   
 - name: Install the nodejs
+  become: yes
   apt:
     name: nodejs
     state: present
 
 - name: Install npm
+  become: yes
   apt:
     name: npm
     state: present
 
-- name: Install n
+- name: Install npm
+  become: yes
   command: npm install -g n
 
 - name: Install specific version of npm
+  become: yes
   command: n install 14
 
 - name: Install pm2 package
+  become: yes
   command: npm install -g pm2
 
 - name: Copy chatbot code to frontend server
+  become: yes
   copy:
     src: ./chatbot_nodejs/
     dest: /var/www/chatbot
     mode: 0755
 
 - name: Install dependencies and start the Node.js application
+  become: yes
   command: npm install
   args:
     chdir: /var/www/chatbot
 
 - name: Stop and delete the app if already running
+  become: yes
   command: pm2 delete index.js
   args:
     chdir: /var/www/chatbot
   ignore_errors: true
 
 - name: Start the Node.js application
+  become: yes
   command: MONGODB_URL="{{ mongodb_connection_string }}" pm2 start index.js
   args:
     chdir: /var/www/chatbot
