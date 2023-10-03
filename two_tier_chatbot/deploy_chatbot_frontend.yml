@@ -1,6 +1,5 @@
 ---
 - name: Deploy Chatbot Application frontend
   hosts: all
-  become: yes
   roles:
     - frontend
