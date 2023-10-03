@@ -6,7 +6,7 @@
 
 - name: Print out local env var
   debug:
-  msg: "'{{ lookup('ansible.builtin.env', 'UBUNTU_IP') }}' is the UBUNTU_IP environment variable."
+    msg: "'{{ lookup('ansible.builtin.env', 'UBUNTU_IP') }}' is the UBUNTU_IP environment variable."
   
 - name: Install the nodejs
   apt:
