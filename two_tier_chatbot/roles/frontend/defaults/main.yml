@@ -1,7 +1,7 @@
 ---
 mongodb_user: chatbotadmin
 mongodb_password: password
-mongodb_host: "{{ ansible_env.UBUNTU_IP }}"
+mongodb_host: "{{ lookup('ansible.builtin.env', 'UBUNTU_IP', default=Undefined) }}"
 mongodb_port: 27017
 mongodb_database: chatbotdb
 mongodb_connection_string: "mongodb://{{ mongodb_user }}:{{ mongodb_password }}@{{ mongodb_host }}:{{ mongodb_port }}/{{ mongodb_database }}"
