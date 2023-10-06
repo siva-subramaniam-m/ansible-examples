@@ -1,7 +1,7 @@
 #!/bin/bash
 # set -x
 
-export LOCATION='FTC06'
+export LOCATION='flatrock'
 export SPACE='Default'
 export SPACE_ENCODED=$(echo -n -e "$SPACE" | od -An -tx1 | tr ' ' % | xargs printf "%s")
 

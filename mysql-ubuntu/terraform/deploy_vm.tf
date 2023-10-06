@@ -54,7 +54,7 @@ data "hpegl_vmaas_cloud_folder" "compute_folder" {
 }
 
 data "hpegl_vmaas_network" "blue_segment" {
-  name = "Blue-Segment"
+  name = var.network
 }
 
 resource "random_integer" "random" {
